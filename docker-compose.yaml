@@ -2,12 +2,15 @@ version: "3.9"
 services:
   db:
     image: postgres:13.4
-    container_name: my-postgresdb-container
+    container_name: postgresdb
     environment:
+      POSTGRES_DB: postgresdb
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4:5.6
@@ -17,3 +20,9 @@ services:
       PGADMIN_DEFAULT_PASSWORD: postgres
     ports:
       - "5050:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+volumes:
+  pgdata:
+  pgadmin:

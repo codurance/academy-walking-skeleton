@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Getter
 @Entity
 @NoArgsConstructor
-@Table(name = "example_user", schema = "public")
+@Table(name = "example_user")
 public class User {
     @JsonIgnore
     private @Id long id;
