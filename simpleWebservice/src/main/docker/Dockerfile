@@ -4,9 +4,18 @@ COPY ${JAR_FILE} app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
 FROM adoptopenjdk:11-jre-hotspot
-COPY --from=builder dependencies/ ./
-COPY --from=builder snapshot-dependencies/ ./
-COPY --from=builder spring-boot-loader/ ./
-COPY --from=builder application/ ./
+
+RUN mkdir /deployments \
+    && chown 1001 /deployments \
+    && chmod "g+rwX" /deployments \
+    && chown 1001:root /deployments
+
+COPY --chown=1001 --from=builder dependencies/ /deployments/
+COPY --chown=1001 --from=builder snapshot-dependencies/ /deployments/
+COPY --chown=1001 --from=builder spring-boot-loader/ /deployments/
+COPY --chown=1001 --from=builder application/ /deployments/
+
 EXPOSE 8080
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+USER 1001
+
+ENTRYPOINT ["java", "-cp", "deployments", "org.springframework.boot.loader.JarLauncher"]
