@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.8"
 services:
   frontend:
     image: academy/simple-frontend:latest
@@ -8,8 +8,6 @@ services:
       - db
     ports:
       - "3000:8080"
-    networks:
-      frontend_net:
 
   backend:
     image: academy/simple-webservice:latest
@@ -20,9 +18,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgresdb
     ports:
       - "8080:8080"
-    networks:
-      frontend_net:
-      backend_net:
 
   db:
     image: postgres:13.4
@@ -35,25 +30,6 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-    networks:
-      backend_net:
-
-  pgadmin:
-    image: dpage/pgadmin4:5.7
-    container_name: pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: user@domain.com
-      PGADMIN_DEFAULT_PASSWORD: postgres
-    ports:
-      - "5050:80"
-    volumes:
-      - pgadmin:/var/lib/pgadmin
-    networks:
-      backend_net:
-
-networks:
-  frontend_net:
-  backend_net:
 
 volumes:
   pgdata:
