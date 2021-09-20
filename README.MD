@@ -15,7 +15,7 @@ It's a colllection of lean services that solve some problem from end to end. It 
 
 ## How to run this application
 
-* In the project root, run the command `make` to get the postgres image and start the container that will hold it (the database will run on port `5432`)
+* In the project root, run the command `make db` to get the postgres image and start the container that will hold it (the database will run on port `5432`)
 * `cd` into the `simpleWebservice` directory
 * run the command `./gradlew bootRun` (the service should run on port `8080` by default)
 * We can verify this was successful by going to `http://localhost:8080/getUsers` using a http client or more simply via a browser
@@ -24,6 +24,12 @@ It's a colllection of lean services that solve some problem from end to end. It 
 * We then run the front end locally by using the command `npm start`
 * This should automatically open a browser on port `http://localhost:3000` where we will see a simple webpage
 * If we click on the button it will make a `get` request to our locally running webservice where we retrieve data and display it on the page
+
+### How to run all using Docker and docker-compose
+
+* Run `make all up` to build docker images for both front-end and back-end applications and start containers for each
+application, including database.
+* Run `make down` to stop all containers.
 
 ## Notes
 * The ports we use are hardcoded, so if we wish to run these services on other ports we will need to update our code accordingly
