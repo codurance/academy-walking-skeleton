@@ -18,7 +18,8 @@ public class SimpleWebserviceApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/getUsers").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/getUsers")
+						.allowedOrigins("http://localhost:3000", "http://frontend:3000");
 			}
 		};
 	}
