@@ -15,6 +15,7 @@ services:
     depends_on:
       - db
     environment:
+      CORS_URL: http://${CORS_URL:-localhost}:3000
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgresdb
     ports:
       - "8080:8080"
