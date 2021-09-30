@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   frontend:
-    image: academy/simple-frontend:latest
+    image: public.ecr.aws/t0t2o6x5/academy/simple-frontend:latest
     container_name: frontend
     depends_on:
       - backend
@@ -10,7 +10,7 @@ services:
       - "3000:8080"
 
   backend:
-    image: academy/simple-webservice:latest
+    image: public.ecr.aws/t0t2o6x5/academy/simple-webservice:latest
     container_name: webservice
     depends_on:
       - db
