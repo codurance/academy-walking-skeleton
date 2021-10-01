@@ -1,15 +1,15 @@
-FROM node:16.9-slim AS builder
+FROM node:16-alpine3.14 AS deps
 
-WORKDIR /app
+WORKDIR /srv
+COPY package*.json .
+RUN npm ci --only=production
 
-COPY package.json package-lock.json ./
-RUN npm install
+FROM node:16-slim AS release
 
+WORKDIR /srv
+COPY --from=deps /srv/node_modules ./node_modules
 COPY . .
-RUN npm run build
 
-FROM nginxinc/nginx-unprivileged:1.21
+EXPOSE 3000
 
-COPY --from=builder /app/build /usr/share/nginx/html
-
-USER 1001
+CMD ["npm", "start"]
