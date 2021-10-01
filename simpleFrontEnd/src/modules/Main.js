@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from 'axios';
 
+const API_URL = process.env.CORS_URL ?? "http://localhost:8080"
+
 function Main() {
 
     const [users, setUsers] = useState([]);
 
     const getUsers = async () => {
-        const res = await axios.get(`http://localhost:8080/getUsers`);
+        const res = await axios.get(`${API_URL}/getUsers`);
         setUsers(res.data)
     }
 
