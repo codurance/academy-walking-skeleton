@@ -54,7 +54,7 @@ jobs:
           cache-dependency-path: ./simpleFrontEnd/package-lock.json
 
       - name: Install and test
-        working-directory: ./simpleFrontend
+        working-directory: ./simpleFrontEnd
         run: |
           npm install
           npm test
