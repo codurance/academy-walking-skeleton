@@ -24,14 +24,22 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
 
-      - name: Build with Gradle
-        run: make build_backend_docker
+      - name: Run tests
+        working-directory: ./simpleWebservice
+        run: ./gradlew clean test
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          name: SimpleWebservice
-          path: simpleWebservice/build/libs
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-duration-seconds: 1200
+          role-skip-session-tagging: true
+
+      - name: Build and push Docker image
+        run: make build_backend_docker push_backend
 
       - name: Cleanup Gradle Cache
         run: |
