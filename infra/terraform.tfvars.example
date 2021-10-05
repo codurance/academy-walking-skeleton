@@ -1,0 +1,2 @@
+aws_region            = "aws-region"
+playground_account_id = "aws-account-id-12-digits"

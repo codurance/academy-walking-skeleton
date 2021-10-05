@@ -79,3 +79,62 @@ jobs:
 
       - name: Build frontend Docker image
         run: make build_frontend_docker push_frontend
+
+  deploy:
+    needs:
+      - build_backend
+      - build_frontend
+    defaults:
+      run:
+        working-directory: ./infra
+    env:
+      TF_VAR_aws_region: ${{ secrets.TF_VAR_aws_region }}
+      TF_VAR_playground_account_id: ${{ secrets.TF_VAR_playground_account_id }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.7
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-duration-seconds: 1200
+          role-skip-session-tagging: true
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: false
+
+      - name: Cache Terraform
+        uses: actions/cache@v2
+        with:
+          path: ./infra/.terraform
+          key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
+          restore-keys: ${{ runner.os }}-terraform-
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+        continue-on-error: false
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -out plan.tfplan -no-color -input=false -replace="aws_instance.walking_skeleton"
+        continue-on-error: false
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -auto-approve -input=false plan.tfplan
+        continue-on-error: false
