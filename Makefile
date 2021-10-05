@@ -58,6 +58,7 @@ push_frontend:
 	@docker push ${FRONTEND_REPOSITORY_URI}:${COMMIT}
 	@docker push ${FRONTEND_REPOSITORY_URI}:${LATEST}
 	@docker logout ${AWS_ECR_PUBLIC_REPOSITORY_PREFIX}
+
 # >>> DOCKER COMPOSE >>> ###############################################################################################
 
 .PHONY: up
