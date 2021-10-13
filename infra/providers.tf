@@ -7,6 +7,14 @@ terraform {
       version = "~> 3.60"
     }
   }
+
+  backend "s3" {
+    bucket         = "terraform-remote-state-codurance-us-east-1"
+    key            = "academy-walking-skeleton-sept-2021/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "academy-walking-skeleton-sept-2021-tf-state-lock"
+  }
 }
 
 provider "aws" {
