@@ -28,6 +28,14 @@ function User(props) {
         });
     }
 
+    const deleteUser = async () => {
+        await axios
+            .delete(`http://localhost:8080/user/${user.id}`)
+            .then(() => {
+                props.onUserDeleted(user);
+            });
+    };
+
     return (
         <>
             <form onSubmit={updateUser}>
@@ -43,7 +51,10 @@ function User(props) {
                     Date of Birth:
                     <input name="dateOfBirth" value={updatedUser.dateOfBirth} onChange={updateForm} placeholder="Date of Birth"/>
                 </label>
-                <button type={"submit"}>Update User</button>
+
+                <button type="submit">Update User</button>
+
+                <button onClick={deleteUser}>Delete User</button>
             </form>
         </>
     )

@@ -4,10 +4,8 @@ import {User} from "./User";
 
 function FindUser() {
     const [users, setUsers] = useState([]);
-
     const [userId, setUserId] = useState("")
     const [error, setError] = useState(undefined);
-
 
     function updateUserId(event) {
         setUserId(event.target.value);
@@ -34,6 +32,12 @@ function FindUser() {
             });
     }
 
+    const removeUser = user => {
+        const index = users.indexOf(user);
+        const updatedUsers = users.splice(index, 1);
+        setUsers(updatedUsers);
+    };
+
     return (
         <>
             <p>
@@ -41,21 +45,26 @@ function FindUser() {
                 <button onClick={getUsers}>Get Users</button>
             </p>
 
+            <form onSubmit={getUser}>
+                <input type="text" name="userId" value={userId} onChange={updateUserId} placeholder="User ID"/>
+                <button type="submit">Get User</button>
+            </form>
+
             {
                 error &&
                 <p>{error}</p>
             }
 
+            <br/>
+
             {
                 users.map(user => (
-                    <User user={user}/>
+                    <>
+                        <User user={user} onUserDeleted={removeUser}/>
+                        <br/>
+                    </>
                 ))
             }
-
-            <form onSubmit={getUser}>
-                <input type="text" name="userId" value={userId} onChange={updateUserId} placeholder="User ID"/>
-                <button type="submit">Get User</button>
-            </form>
         </>
     )
 }

@@ -10,8 +10,10 @@ function Main() {
                     This is a simple webpage
                 </h2>
             </header>
+
             <FindUser/>
             <br/>
+
             <CreateUser/>
             <br/>
         </div>

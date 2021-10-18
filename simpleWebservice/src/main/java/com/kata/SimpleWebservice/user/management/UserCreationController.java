@@ -16,8 +16,12 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RestController
 public class UserCreationController {
 
+    private final UserCreator userCreator;
+
     @Autowired
-    private UserCreator userCreator;
+    public UserCreationController(UserCreator userCreator) {
+        this.userCreator = userCreator;
+    }
 
     @PostMapping("/user/create")
     @ResponseStatus(CREATED)

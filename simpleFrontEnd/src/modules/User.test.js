@@ -2,10 +2,13 @@ import {act, fireEvent, render, screen} from "@testing-library/react";
 import {User} from "./User";
 import userEvent from "@testing-library/user-event";
 import * as axios from "axios";
+import {when} from "jest-when";
 
 jest.mock('axios');
 
 describe('on user rendered', () => {
+    let hasFlagChanged = false;
+
     beforeEach(async () => {
         const user = {
             id: 2,
@@ -13,7 +16,11 @@ describe('on user rendered', () => {
             age: 24,
             dateOfBirth: '1997-01-01'
         }
-        await render(<User user={user}/>);
+        const onUserDeletedHandler = () => {
+            hasFlagChanged = true;
+        };
+
+        await render(<User user={user} onUserDeleted={onUserDeletedHandler}/>);
     });
 
     it('should display user', () => {
@@ -41,4 +48,16 @@ describe('on user rendered', () => {
 
         const inputText = (placeholderName, value) => userEvent.type(screen.getByPlaceholderText(placeholderName), `{selectall}${value}`)
     });
+
+    describe("on delete button clicked delete user", () => {
+        it('trigger user deletion handler', async () => {
+            when(axios.delete).calledWith('http://localhost:8080/user/2').mockResolvedValue({});
+
+            await act(async () => {
+                userEvent.click(screen.getByText('Delete User', {selector: 'button'}));
+            });
+
+            expect(hasFlagChanged).toBeTruthy();
+        });
+    })
 })
