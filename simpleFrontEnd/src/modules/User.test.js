@@ -32,7 +32,7 @@ describe('on user rendered', () => {
                 userEvent.click(screen.getByText('Update User', {selector: 'button'}));
             });
 
-            expect(axios.put).toBeCalledWith('http://localhost:8080/user/2/', {
+            expect(axios.put).toBeCalledWith('http://localhost:8080/user/2', {
                 name: 'Jordan',
                 age: 28,
                 dateOfBirth: '1993-01-01'

@@ -10,9 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
 import static java.time.LocalDate.of;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -50,7 +47,7 @@ class UserUpdateControllerShould {
     @Test
     void update_user_from_mapped_updated_user_request() throws Exception {
         given(userRepository.existsById(1L)).willReturn(true);
-        
+
         this.mockMvc.perform(buildUpdateUserRequest());
 
         PersistedUser newUser = captureUpdatedUser();

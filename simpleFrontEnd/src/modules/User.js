@@ -13,7 +13,7 @@ function User(props) {
     async function updateUser(event) {
         event.preventDefault();
 
-        await axios.put(`http://localhost:8080/user/${user.id}/`, {
+        await axios.put(`http://localhost:8080/user/${user.id}`, {
             ...updatedUser,
             age: parseInt(updatedUser.age)
         });
