@@ -22,7 +22,7 @@ public class UserCreationController {
     @PostMapping("/user/create")
     @ResponseStatus(CREATED)
     @ResponseBody
-    public Map<String, Long> createUser(@RequestBody NewUserRequest request) {
+    public Map<String, Long> createUser(@RequestBody UserRequest request) {
         User newUser = userCreator.createNewUser(request);
 
         return singletonMap("id", newUser.getId());

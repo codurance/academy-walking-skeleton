@@ -16,14 +16,14 @@ public class UserCreator {
         this.userRepository = userRepository;
     }
 
-    public User createNewUser(NewUserRequest request) {
+    public User createNewUser(UserRequest request) {
         PersistedUser user = map(request);
         PersistedUser updatedUser = userRepository.save(user);
 
         return map(updatedUser);
     }
 
-    private PersistedUser map(NewUserRequest request) {
+    private PersistedUser map(UserRequest request) {
         return PersistedUser
                 .builder()
                 .name(request.getName())
