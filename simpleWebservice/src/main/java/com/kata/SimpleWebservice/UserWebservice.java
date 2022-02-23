@@ -16,7 +16,7 @@ public class UserWebservice {
     @RequestMapping("/getUsers")
     @ResponseBody
     public List<User> getUsersFromDatabase() {
-        return (List<User>) userRepository.findAll();
+        return userRepository.findAll();
     }
 
 

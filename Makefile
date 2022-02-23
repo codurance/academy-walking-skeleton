@@ -2,10 +2,10 @@
 all: backend frontend
 
 .PHONY: backend
-backend: build_backend_docker push_backend
+backend: build_backend_docker
 
 .PHONY: frontend
-frontend: build_frontend_docker push_frontend
+frontend: build_frontend_docker
 
 COMMIT		:= $(shell git rev-parse HEAD)
 LATEST		:= latest
@@ -32,12 +32,6 @@ build_backend_docker: build_jar
 	@docker tag ${BACKEND_IMAGE_COMMIT} ${BACKEND_REPOSITORY_URI}:${COMMIT}
 	@docker tag ${BACKEND_IMAGE_COMMIT} ${BACKEND_REPOSITORY_URI}:${LATEST}
 
-push_backend:
-	@aws ecr-public get-login-password --region ${AWS_PLAYGROUND_REGION} | docker login --username AWS --password-stdin ${AWS_ECR_PUBLIC_REPOSITORY_PREFIX}
-	@docker push ${BACKEND_REPOSITORY_URI}:${COMMIT}
-	@docker push ${BACKEND_REPOSITORY_URI}:${LATEST}
-	@docker logout ${AWS_ECR_PUBLIC_REPOSITORY_PREFIX}
-
 # >>> FRONTEND APP >>> #################################################################################################
 
 FRONTEND_REPOSITORY_NAME		:= academy/simple-frontend
@@ -52,12 +46,6 @@ build_frontend_docker:
 	@docker tag ${FRONTEND_IMAGE_COMMIT} ${FRONTEND_REPOSITORY_NAME}:${LATEST}
 	@docker tag ${FRONTEND_IMAGE_COMMIT} ${FRONTEND_REPOSITORY_URI}:${COMMIT}
 	@docker tag ${FRONTEND_IMAGE_COMMIT} ${FRONTEND_REPOSITORY_URI}:${LATEST}
-
-push_frontend:
-	@aws ecr-public get-login-password --region ${AWS_PLAYGROUND_REGION} | docker login --username AWS --password-stdin ${AWS_ECR_PUBLIC_REPOSITORY_PREFIX}
-	@docker push ${FRONTEND_REPOSITORY_URI}:${COMMIT}
-	@docker push ${FRONTEND_REPOSITORY_URI}:${LATEST}
-	@docker logout ${AWS_ECR_PUBLIC_REPOSITORY_PREFIX}
 
 # >>> DOCKER COMPOSE >>> ###############################################################################################
 
