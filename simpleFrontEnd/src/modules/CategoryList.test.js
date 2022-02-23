@@ -5,7 +5,7 @@ describe('CategoryListShould', ()=>{
     it('render the title', ()=>{
         render(<CategoryList />);
 
-        const title = screen.getByText('CategoryList');
+        const title = screen.getByText('Categories');
 
         expect(title).toBeInTheDocument();
     })

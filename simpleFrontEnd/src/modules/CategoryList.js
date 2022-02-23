@@ -1,3 +1,5 @@
 export const CategoryList = ()=>{
-    return <></>
+    return <h1>
+        Categories
+    </h1>
 }
