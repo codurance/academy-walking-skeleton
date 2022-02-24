@@ -35,4 +35,13 @@ describe('Employee', () => {
         await renderPage();
         expect(screen.queryByTestId("new-employee-form")).toBeNull();
     } )
+
+    it ( 'Should have a list', async()=>{
+
+        await renderPage();
+
+        const employeeList = screen.getByTestId('employee-list');
+
+        expect(employeeList).toBeInTheDocument();
+    } )
 });
