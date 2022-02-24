@@ -2,7 +2,7 @@ import React from "react";
 
 const Category = () => {
     return (
-        <div>Category</div>
+        <h1>Employee</h1>
     )
 };
 
