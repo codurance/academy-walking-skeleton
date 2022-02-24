@@ -1,6 +1,4 @@
-import React, {useState, useEffect } from "react";
-import * as axios from "axios";
-const API_URL = process.env.REACT_APP_API_URL ?? "http://localhost:8080"
+import React from "react";
 
 const EmployeeForm= () => {
 
@@ -22,7 +20,6 @@ const EmployeeForm= () => {
                 <input type="text" defaultValue={""} role={"extension"}/>
                 <input type="text" defaultValue={""} role={"photo"}/>
                 <input type="text" defaultValue={""} role={"notes"}/>
-
                 <button>Update</button>
             </form>
     )
