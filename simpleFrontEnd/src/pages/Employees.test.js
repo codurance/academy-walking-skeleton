@@ -56,7 +56,7 @@ describe('Employee page', () => {
 });
 
 describe('Employee list', () => {
-    it ( 'Should display one employee in the list', async()=>{
+    it ( 'Should get employees from API and display in a list', async()=>{
         const mockUsers = [{ firstName: "John Doe" },{ firstName: "Chris" },];
         mockFetchUsers(mockUsers);
 
@@ -66,5 +66,17 @@ describe('Employee list', () => {
 
         const employeeForms = screen.getAllByRole("employee-form");
         expect(employeeForms).toHaveLength(2);
-    } )
+    })
+
+    it ( 'Should display update button inside list', async()=>{
+        const mockUsers = [{ firstName: "John Doe" },{ firstName: "Chris" },];
+        mockFetchUsers(mockUsers);
+
+        await act(async () => {
+            await renderPage();
+        });
+
+        const updateButtons = screen.getAllByText('Update', { selector: 'button' });
+        expect(updateButtons).toHaveLength(2);
+    })
 });
