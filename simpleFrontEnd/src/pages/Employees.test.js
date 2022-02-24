@@ -1,14 +1,26 @@
-import { render, screen } from '@testing-library/react';
+import {cleanup, render, screen} from '@testing-library/react';
 import Employee from "./Employees";
 import userEvent from "@testing-library/user-event";
 import * as axios from "axios";
-const renderPage = async () => render(<Employee />);
+import {act} from "react-dom/test-utils";
+
 jest.mock('axios');
 
-describe('Employee', () => {
+const renderPage = async () => render(<Employee />);
+
+const mockFetchUsers = results => {
+    axios.get.mockImplementation(() => Promise.resolve({
+        data: results
+    }));
+}
+
+describe('Employee page', () => {
 
     beforeEach(async () => {
-        await renderPage();
+        mockFetchUsers(mockUsers);
+        await act(async () => {
+            renderPage();
+        });
     })
 
     it('should display Employee text', async () => {
@@ -41,22 +53,18 @@ describe('Employee', () => {
 
         expect(employeeList).toBeInTheDocument();
     } )
+});
 
+describe('Employee list', () => {
     it ( 'Should display one employee in the list', async()=>{
-
-        const mockUsers = [{ firstName: "John Doe" }];
-
-        const mockFetchUsers = results => {
-            axios.get.mockImplementation(() => Promise.resolve({
-                data: results
-            }));
-        }
+        const mockUsers = [{ firstName: "John Doe" },{ firstName: "Chris" },];
         mockFetchUsers(mockUsers);
-        const expectedTextFromAPI = ['John Doe'];
 
-        expectedTextFromAPI.forEach(content => {
-            expect(screen.getByText(content)).toBeInTheDocument();
+        await act(async () => {
+            await renderPage();
         });
-    } )
 
+        const employeeForms = screen.getAllByRole("employee-form");
+        expect(employeeForms).toHaveLength(2);
+    } )
 });
