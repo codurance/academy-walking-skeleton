@@ -18,4 +18,10 @@ describe('CategoryFormShould', ()=>{
         expect(picture).toBeInTheDocument()
 
     })
+
+    it('render the submit button', () =>{
+        const submitButton = screen.getByRole('button');
+
+        expect(submitButton).toBeInTheDocument()
+    })
 })
