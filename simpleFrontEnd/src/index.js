@@ -11,8 +11,5 @@ ReactDOM.render(
             <Route path="/categories" element={<Categories />} />
         </Routes>
     </BrowserRouter>,
-  <React.StrictMode>
-    <Main />
-  </React.StrictMode>,
   document.getElementById('root')
 );
