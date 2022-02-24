@@ -13,7 +13,11 @@ export const Categories = () => {
         <h1>
             Categories
         </h1>
+        <ul name="categoryList">
+
+        </ul>
         <button onClick={handleNewCategoryClick}>new</button>
         {categoryForm && <CategoryForm />}
+
     </div>
 }
