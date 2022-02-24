@@ -7,8 +7,6 @@ public class CategoryCreationDto {
 	private String description;
 	private String picture;
 
-	public CategoryCreationDto() { }
-
 	public CategoryCreationDto(String name, String description, String picture) {
 		this.name = name;
 		this.description = description;

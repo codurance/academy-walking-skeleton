@@ -2,7 +2,6 @@ package com.kata.SimpleWebservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,7 +14,7 @@ public class CategoryWebService {
 	}
 
 	@PostMapping("/categories/create")
-	public void getUsersFromDatabase(@RequestBody CategoryCreationDto dto) {
+	public void getUsersFromDatabase(CategoryCreationDto dto) {
 		categoryService.create(dto);
 	}
 }
