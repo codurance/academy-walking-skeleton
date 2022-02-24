@@ -12,4 +12,11 @@ describe('Employee', () => {
         expect(employeeTitle).toBeInTheDocument();
     });
 
+    it('should display new Employee button', async () => {
+
+        await renderPage();
+
+        const employeeButton = screen.getByText('New', { selector: 'button' });
+        expect(employeeButton).toBeInTheDocument();
+    });
 });
