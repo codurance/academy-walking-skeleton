@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Employee from "./Employees";
+import userEvent from "@testing-library/user-event";
 const renderPage = async () => render(<Employee />);
 
 describe('Employee', () => {
@@ -19,4 +20,14 @@ describe('Employee', () => {
         const employeeButton = screen.getByText('New', { selector: 'button' });
         expect(employeeButton).toBeInTheDocument();
     });
+
+    it ( 'should appear a form after press the new button', async()=>{
+
+        await renderPage();
+
+        userEvent.click(screen.getByText('New', { selector: 'button' }));
+
+        expect(screen.getByTestId("new-employee-form"));
+
+    } )
 });
