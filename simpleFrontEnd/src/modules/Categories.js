@@ -2,7 +2,7 @@ import {useState} from "react";
 
 
 export const Categories = () => {
-    const {categoryForm, setCategoryForm} = useState(false)
+    const [categoryForm, setCategoryForm] = useState(false)
 
     const handleNewCategoryClick = () => {
         setCategoryForm(true)

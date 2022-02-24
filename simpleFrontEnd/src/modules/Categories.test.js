@@ -27,4 +27,20 @@ describe('CategoryListShould', ()=>{
 
     })
 
+    it('render expected input in the form', () =>{
+        render(<Categories />);
+
+        const button = screen.getByRole('button');
+        button.click();
+
+        const name = screen.getByLabelText('name')
+        const description = screen.getByLabelText('description')
+        const picture = screen.getByLabelText('picture')
+
+        expect(name).toBeInTheDocument()
+        expect(description).toBeInTheDocument()
+        expect(picture).toBeInTheDocument()
+
+    })
+
 })
