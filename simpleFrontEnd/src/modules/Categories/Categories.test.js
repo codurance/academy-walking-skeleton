@@ -28,18 +28,4 @@ describe('CategoryListShould', ()=>{
 
     })
 
-    it('render expected input in the form', () =>{
-        const button = screen.getByRole('button');
-        button.click();
-
-        const name = screen.getByLabelText('Name:')
-        const description = screen.getByLabelText('Description:')
-        const picture = screen.getByLabelText('Picture:')
-
-        expect(name).toBeInTheDocument()
-        expect(description).toBeInTheDocument()
-        expect(picture).toBeInTheDocument()
-
-    })
-
 })
