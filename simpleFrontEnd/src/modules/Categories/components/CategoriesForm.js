@@ -1,21 +1,40 @@
 import {useState} from "react";
 
 
-export const CategoryForm = () => {
+export const CategoryForm = ({onSubmit}) => {
+    const [formData, setFormData] = useState({})
+
+    function handleOnSubmit(event) {
+        event.preventDefault();
+        onSubmit(formData);
+    }
+
     return <div>
         <form name="categoryForm">
             <label htmlFor="name">Name:
-                <input type="text"  id="name" name="name"/>
+                <input onChange={(event) =>
+                    setFormData(
+                        {...formData,
+                            name: event.target.value})}
+                       type="text"  id="name" name="name"/>
             </label>
 
             <label htmlFor="description">Description:
-                <input type="text" id="description" name="description" value=""/>
+                <input onChange={(event) =>
+                    setFormData(
+                        {...formData,
+                            description: event.target.value})}
+                       type="text" id="description" name="description" value=""/>
             </label>
 
             <label htmlFor="picture">Picture:
-                <input type="text"  id="picture" name="picture"/>
+                <input onChange={(event) =>
+                    setFormData(
+                        {...formData,
+                            picture: event.target.value})}
+                       type="text"  id="picture" name="picture"/>
             </label>
-            <button>submit</button>
+            <button onClick={handleOnSubmit}>submit</button>
         </form>
     </div>
 }
