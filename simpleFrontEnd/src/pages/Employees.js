@@ -1,9 +1,11 @@
-import React from "react";
-
 const Category = () => {
-    return (
+    return (<>
         <h1>Employee</h1>
-    )
+        <button>New</button>
+    </>
+)
 };
+
+import React from "react";
 
 export default Category;
