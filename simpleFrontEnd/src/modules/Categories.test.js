@@ -15,4 +15,16 @@ describe('CategoryListShould', ()=>{
         expect(newCategoryForm).not.toBeInTheDocument();
     })
 
+    it('render category form when new button clicked', ()=> {
+        render(<Categories />);
+
+        const button = screen.getByRole('button');
+        button.click();
+
+        const newCategoryForm = screen.getByRole('form', {name: 'categoryForm'});
+
+        expect(newCategoryForm).toBeInTheDocument();
+
+    })
+
 })
