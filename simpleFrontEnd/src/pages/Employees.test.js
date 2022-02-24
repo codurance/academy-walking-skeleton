@@ -27,7 +27,12 @@ describe('Employee', () => {
 
         userEvent.click(screen.getByText('New', { selector: 'button' }));
 
-        expect(screen.getByTestId("new-employee-form"));
+        expect(screen.getByTestId("new-employee-form")).toBeInTheDocument();
+    } )
 
+    it ( 'form should not appear if the button is not pressed', async()=>{
+
+        await renderPage();
+        expect(screen.getByTestId("new-employee-form")).not.toBeInTheDocument();
     } )
 });

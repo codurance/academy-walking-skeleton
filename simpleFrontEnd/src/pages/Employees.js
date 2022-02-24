@@ -2,6 +2,7 @@ const Category = () => {
     return (<>
         <h1>Employee</h1>
         <button>New</button>
+        <form data-testid="new-employee-form"></form>
     </>
 )
 };
