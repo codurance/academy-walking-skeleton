@@ -1,6 +1,7 @@
 package com.kata.SimpleWebservice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.time.Instant;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import org.junit.jupiter.api.Test;
@@ -23,9 +24,13 @@ public class CategoryAcceptanceTest {
 
 	@Test public void
 	follow_the_script() throws Exception {
+		var name = "testCategory" + Instant.now().toString();
+		var description = "descriptionOfTestCategory" + Instant.now().toString();
+		var picture = "somethingPretty" + Instant.now().toString();
+
 		var creationPayload =
 			mapper.writeValueAsString(
-				new CategoryCreationDto("testCategory", "a test category", "something pretty")
+				new CategoryCreationDto(name, description, picture)
 			);
 
 		this.mockMvc
@@ -39,8 +44,8 @@ public class CategoryAcceptanceTest {
 				.getResponse()
 				.getContentAsString();
 
-		assertThat(result, containsString("testCategory"));
-		assertThat(result, containsString("a test category"));
-		assertThat(result, containsString("something pretty"));
+		assertThat(result, containsString(name));
+		assertThat(result, containsString(description));
+		assertThat(result, containsString(picture));
 	}
 }
