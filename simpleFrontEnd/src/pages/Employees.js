@@ -8,6 +8,7 @@ const Employees = () => {
 
     return (<>
         <h1>Employee</h1>
+         <ul data-testid="employee-list"></ul>
         <button onClick={showForm}>New</button>
             {formView &&
                 <form data-testid="new-employee-form"></form>
