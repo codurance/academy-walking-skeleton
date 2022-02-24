@@ -1,4 +1,4 @@
-const Category = () => {
+const Employees = () => {
     return (<>
         <h1>Employee</h1>
         <button>New</button>
@@ -9,4 +9,4 @@ const Category = () => {
 
 import React from "react";
 
-export default Category;
+export default Employees;
