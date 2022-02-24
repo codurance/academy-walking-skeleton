@@ -28,4 +28,10 @@ describe('CategoryListShould', ()=>{
 
     })
 
+    it('shows the list of categories', ()=> {
+        const categoryList = screen.getByRole("list", {accessibleName: "categoryList"});
+
+        expect(categoryList).toBeInTheDocument();
+    })
+
 })

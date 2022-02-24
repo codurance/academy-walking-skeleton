@@ -26,7 +26,7 @@ describe('CategoryFormShould', () => {
         expect(submitButton).toBeInTheDocument()
     })
 
-    it('input changes their values properly', () => {
+    it('submits the form data', () => {
         let name = screen.getByLabelText('Name:');
         fireEvent.change(name, {target: {value: 'name'}})
 
