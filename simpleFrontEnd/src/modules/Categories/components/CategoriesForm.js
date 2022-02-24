@@ -34,7 +34,7 @@ export const CategoryForm = ({onSubmit}) => {
                             picture: event.target.value})}
                        type="text"  id="picture" name="picture"/>
             </label>
-            <button onClick={handleOnSubmit}>submit</button>
+            <button onClick={handleOnSubmit} aria-label="submit">submit</button>
         </form>
     </div>
 }

@@ -21,7 +21,7 @@ describe('CategoryListShould', ()=>{
 
     it('render the expected items on the page', ()=>{
         const title = screen.getByText('Categories');
-        const button = screen.getByRole('button', {name: /submit/});
+        const button = screen.getByRole('button', {name: /newCategory/});
         const newCategoryForm = screen.queryByRole('form', {name: /categoryForm/});
 
         expect(button).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe('CategoryListShould', ()=>{
     })
 
     it('render category form when new button clicked', ()=> {
-        const button = screen.getByRole('button');
+        const button = screen.getByRole('button', {name: /newCategory/});
         button.click();
 
         const newCategoryForm = screen.getByRole('form', {name: /categoryForm/});
