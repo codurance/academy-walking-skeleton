@@ -7,7 +7,7 @@ describe('CategoryListShould', ()=>{
 
         const title = screen.getByText('Categories');
         const button = screen.getByRole('button');
-        const newCategoryForm = screen.queryByRole('form', {name: 'categoryForm'});
+        const newCategoryForm = screen.queryByRole('form', {accessibleName: 'categoryForm'});
 
         expect(button).toBeInTheDocument();
         expect(title).toBeInTheDocument();
@@ -21,7 +21,7 @@ describe('CategoryListShould', ()=>{
         const button = screen.getByRole('button');
         button.click();
 
-        const newCategoryForm = screen.getByRole('form', {name: 'categoryForm'});
+        const newCategoryForm = screen.getByRole('form', {accessibleName: 'categoryForm'});
 
         expect(newCategoryForm).toBeInTheDocument();
 
