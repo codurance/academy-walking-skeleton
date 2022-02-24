@@ -47,8 +47,8 @@ describe('CategoryListShould', ()=>{
     })
 
     it('display retrieved categories as a list', async () => {
-        await mockFetchCategories(mockCategories);
-        const expectedTextFromAPI = ['Name: "aName"', 'Description: "aDescription"', 'Picture: "aPicture"'];
+        // await mockFetchCategories(mockCategories);
+        const expectedTextFromAPI = ['Name: aName', 'Description: aDescription', 'Picture: aPicture'];
 
         expectedTextFromAPI.forEach(content => {
             expect(screen.getByText(content)).toBeInTheDocument();
