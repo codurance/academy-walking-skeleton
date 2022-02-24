@@ -1,4 +1,4 @@
-import {cleanup, render, screen} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import Employee from "./Employees";
 import userEvent from "@testing-library/user-event";
 import * as axios from "axios";

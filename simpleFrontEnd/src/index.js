@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Employees from "./pages/Employees";
+import Employees from "./modules/Employees/Employees";
 import {Main} from "./modules/Main";
 
 ReactDOM.render(
