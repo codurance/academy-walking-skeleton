@@ -9,12 +9,13 @@ export const CategoryForm = () => {
             </label>
 
             <label htmlFor="description">Description:
-                <input type="text" id="description" name="description"/>
+                <input type="text" id="description" name="description" value=""/>
             </label>
 
             <label htmlFor="picture">Picture:
                 <input type="text"  id="picture" name="picture"/>
             </label>
+            <button>submit</button>
         </form>
     </div>
 }
