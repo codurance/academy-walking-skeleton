@@ -33,6 +33,6 @@ describe('Employee', () => {
     it ( 'form should not appear if the button is not pressed', async()=>{
 
         await renderPage();
-        expect(screen.getByTestId("new-employee-form")).not.toBeInTheDocument();
+        expect(screen.queryByTestId("new-employee-form")).toBeNull();
     } )
 });
