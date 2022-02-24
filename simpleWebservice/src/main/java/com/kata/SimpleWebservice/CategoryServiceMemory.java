@@ -1,11 +1,11 @@
 package com.kata.SimpleWebservice;
 
 import java.util.List;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CategoryServiceMemory implements CategoryService {
-	public CategoryServiceMemory() { }
 
 	@Override
 	public void create(CategoryCreationDto dto) {

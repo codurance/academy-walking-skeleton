@@ -15,6 +15,5 @@ public class CategoryWebService {
 
 	@PostMapping("/categories/create")
 	public void getUsersFromDatabase(CategoryCreationDto dto) {
-		throw new UnsupportedOperationException();
 	}
 }
