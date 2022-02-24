@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import Employee from "./Employees";
 import userEvent from "@testing-library/user-event";
+import * as axios from "axios";
 const renderPage = async () => render(<Employee />);
+jest.mock('axios');
 
 describe('Employee', () => {
 
@@ -39,4 +41,22 @@ describe('Employee', () => {
 
         expect(employeeList).toBeInTheDocument();
     } )
+
+    it ( 'Should display one employee in the list', async()=>{
+
+        const mockUsers = [{ firstName: "John Doe" }];
+
+        const mockFetchUsers = results => {
+            axios.get.mockImplementation(() => Promise.resolve({
+                data: results
+            }));
+        }
+        mockFetchUsers(mockUsers);
+        const expectedTextFromAPI = ['John Doe'];
+
+        expectedTextFromAPI.forEach(content => {
+            expect(screen.getByText(content)).toBeInTheDocument();
+        });
+    } )
+
 });
