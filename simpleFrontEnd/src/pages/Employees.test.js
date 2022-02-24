@@ -15,8 +15,10 @@ const mockFetchUsers = results => {
 }
 
 describe('Employee page', () => {
+    const mockUsers = [{ firstName: "John Doe" },{ firstName: "Chris" },];
 
     beforeEach(async () => {
+
         mockFetchUsers(mockUsers);
         await act(async () => {
             renderPage();

@@ -21,7 +21,12 @@ const Employees = () => {
          <ul data-testid="employee-list">
              {
                  employeeList.map((employee) => {
-                     return <li key={employee.firstName}><form role={"employee-form"}><input type="text" defaultValue={employee.firstName} /></form></li>
+                     return <li key={employee.firstName}>
+                         <form role={"employee-form"}>
+                             <input type="text" defaultValue={employee.firstName} />
+                             <button>Update</button>
+                         </form>
+                     </li>
                  })
              }
          </ul>
