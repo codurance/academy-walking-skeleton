@@ -12,8 +12,13 @@ const Employees = () => {
     }
 
     useEffect(async () => {
-        const res = await axios.get(`${API_URL}/getEmployees`);
-        setEmployeeList(res.data);
+        try {
+            const res = await axios.get(`${API_URL}/getEmployees`);
+            setEmployeeList(res.data);
+        } catch (ex){
+
+            setEmployeeList([{firstName: "Example 1"}, {firstName: "Example 2"}, {firstName: "Example 3"}]);
+        }
     }, []);
 
     return (<>
