@@ -1,5 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import { Categories } from './Categories'
+import * as axios from 'axios';
+import { act } from 'react-dom/test-utils';
+import userEvent from "@testing-library/user-event";
+
+jest.mock('axios');
+
+const mockCategories = [{ name: "aName", description: "aDescription", picture: "aPicture" }];
+
+const mockFetchCategories = results =>
+    axios.get.mockImplementation(() => Promise.resolve({
+        data: results
+    }));
 
 describe('CategoryListShould', ()=>{
 
@@ -32,6 +44,15 @@ describe('CategoryListShould', ()=>{
         const categoryList = screen.getByRole("list", {accessibleName: "categoryList"});
 
         expect(categoryList).toBeInTheDocument();
+    })
+
+    it('display retrieved categories as a list', async () => {
+        await mockFetchCategories(mockCategories);
+        const expectedTextFromAPI = ['Name: "aName"', 'Description: "aDescription"', 'Picture: "aPicture"'];
+
+        expectedTextFromAPI.forEach(content => {
+            expect(screen.getByText(content)).toBeInTheDocument();
+        });
     })
 
 })
