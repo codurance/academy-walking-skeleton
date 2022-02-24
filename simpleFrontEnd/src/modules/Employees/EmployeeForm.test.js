@@ -10,31 +10,33 @@ const renderPage = async () => render(<EmployeeForm />);
 describe('Employee page', () => {
 
     it('should display all the inputs in the employee form', async () => {
+        renderPage();
 
-        function expectToBeInDocument({role, selector}) {
-            const expected = screen.getByRole(role, {selector});
+        function expectToBeInDocument(role) {
+            const expected = screen.getByRole(role, {selector:"input"});
             expect(expected).toBeInTheDocument();
         }
 
-        var inputs = [{role: "reports", selector: "input"},
-            {role: "last-name", selector: "input"},
-            {role: "first-name", selector: "input"},
-            {role: "title", selector: "input"},
-            {role: "courtesy-title", selector: "select"},
-            {role: "birthdate", selector: "input"},
-            {role: "hire-date", selector: "input"},
-            {role: "address", selector: "input"},
-            {role: "city", selector: "input"},
-            {role: "region", selector: "input"},
-            {role: "postal-code", selector: "input"},
-            {role: "country", selector: "input"},
-            {role: "home-phone", selector: "input"},
-            {role: "extension", selector: "input"},
-            {role: "photo", selector: "input"},
-            {role: "notes", selector: "input"},
+        var inputs = [
+            "reports",
+            "last-name",
+            "first-name",
+            "title",
+            "courtesy-title",
+            "birthdate",
+            "hire-date",
+            "address",
+            "city",
+            "region",
+            "postal-code",
+            "country",
+            "home-phone",
+            "extension",
+            "photo",
+            "notes",
         ]
 
-        inputs.forEach(input => expectToBeInDocument(input));
+        inputs.forEach(role => expectToBeInDocument(role));
     });
 
 });
