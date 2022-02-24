@@ -16,12 +16,12 @@ export const Categories = () => {
         <h1>
             Categories
         </h1>
-        <ul name="categoryList">
+        <ul aria-label="categoryList">
             <li>{"Name: " + categoryList[0].name}</li>
             <li>{"Description: " + categoryList[0].description}</li>
             <li>{"Picture: " + categoryList[0].picture}</li>
         </ul>
-        <button onClick={handleNewCategoryClick}>new</button>
+        <button aria-label="submit" onClick={handleNewCategoryClick}>new</button>
         {categoryForm && <CategoryForm />}
 
     </div>

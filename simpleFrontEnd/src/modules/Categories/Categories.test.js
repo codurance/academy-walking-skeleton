@@ -21,8 +21,8 @@ describe('CategoryListShould', ()=>{
 
     it('render the expected items on the page', ()=>{
         const title = screen.getByText('Categories');
-        const button = screen.getByRole('button');
-        const newCategoryForm = screen.queryByRole('form', {accessibleName: 'categoryForm'});
+        const button = screen.getByRole('button', {name: /submit/});
+        const newCategoryForm = screen.queryByRole('form', {name: /categoryForm/});
 
         expect(button).toBeInTheDocument();
         expect(title).toBeInTheDocument();
@@ -34,14 +34,14 @@ describe('CategoryListShould', ()=>{
         const button = screen.getByRole('button');
         button.click();
 
-        const newCategoryForm = screen.getByRole('form', {accessibleName: 'categoryForm'});
+        const newCategoryForm = screen.getByRole('form', {name: /categoryForm/});
 
         expect(newCategoryForm).toBeInTheDocument();
 
     })
 
     it('shows the list of categories', ()=> {
-        const categoryList = screen.getByRole("list", {accessibleName: "categoryList"});
+        const categoryList = screen.getByRole("list", {name: /categoryList/});
 
         expect(categoryList).toBeInTheDocument();
     })
@@ -53,6 +53,13 @@ describe('CategoryListShould', ()=>{
         expectedTextFromAPI.forEach(content => {
             expect(screen.getByText(content)).toBeInTheDocument();
         });
+    })
+
+    it('shows an update button', ()=> {
+        const updateButton = screen.getByRole("button", {name: /updateButton/});
+
+        expect(updateButton).toBeInTheDocument();
+
     })
 
 })

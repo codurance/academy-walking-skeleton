@@ -10,7 +10,7 @@ export const CategoryForm = ({onSubmit}) => {
     }
 
     return <div>
-        <form name="categoryForm">
+        <form aria-label="categoryForm">
             <label htmlFor="name">Name:
                 <input onChange={(event) =>
                     setFormData(
