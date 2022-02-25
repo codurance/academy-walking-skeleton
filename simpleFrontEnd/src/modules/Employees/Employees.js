@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from "react";
 import * as axios from "axios";
 import EmployeeForm from "../EmployeeForm/EmployeeForm";
+import { v4 as uuid } from 'uuid';
 const API_URL = process.env.REACT_APP_API_URL ?? "http://localhost:8080"
 
 const Employees = () => {
@@ -26,7 +27,7 @@ const Employees = () => {
             <ul data-testid="employee-list">
              {
                  employeeList.map((employee) => {
-                     return <li key={employee.firstName}>
+                     return <li key={`employee-${uuid()}`}>
                          <EmployeeForm employee={employee} handleForm={updateEmployee}/>
                      </li>
                  })
