@@ -35,7 +35,7 @@ const Employees = () => {
          </ul>
         <button onClick={showForm}>New</button>
             {formView &&
-                <form data-testid="new-employee-form"></form>
+                <EmployeeForm handleForm={(form)=>{ console.log(form) }}/>
             }
     </>
 )

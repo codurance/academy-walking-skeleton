@@ -46,6 +46,6 @@ describe('Employee page', () => {
         userEvent.type(inputElement,"testing reports");
         let buttom= screen.getByText("Update")
         userEvent.click(buttom);
-        assert.equal(outputObject.reports,"testing reports");
+        assert.equal(outputObject.reports,"testing reports")
     });
 });

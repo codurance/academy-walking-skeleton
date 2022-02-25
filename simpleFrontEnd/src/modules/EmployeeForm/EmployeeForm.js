@@ -23,7 +23,7 @@ const EmployeeForm= ({handleForm}) => {
 
 
     return (
-            <form role={"employee-form"} onSubmit={(event)=> {
+            <form data-testid="new-employee-form" role={"employee-form"} onSubmit={(event)=> {
                 event.preventDefault()
                 handleForm(form)
             }}>
