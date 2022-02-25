@@ -1,15 +1,15 @@
 import {render, screen} from '@testing-library/react';
 import EmployeeForm from "./EmployeeForm";
 import * as axios from "axios";
-
+import userEvent from '@testing-library/user-event';
+import * as assert from "assert";
 jest.mock('axios');
-
-const renderPage = async () => render(<EmployeeForm />);
 
 
 describe('Employee page', () => {
 
     it('should display all the inputs in the employee form', async () => {
+        const renderPage = async () => render(<EmployeeForm/>);
         renderPage();
 
         function expectToBeInDocument(role) {
@@ -38,5 +38,14 @@ describe('Employee page', () => {
 
         inputs.forEach(role => expectToBeInDocument(role));
     });
-
+    it('should send testing reports value at reports', async () => {
+        var outputObject
+        const renderPage = async () => render(<EmployeeForm handleForm={(form)=>{outputObject=form}}/>);
+        renderPage();
+        let inputElement= screen.getByRole("reports", {selector:"input"})
+        userEvent.type(inputElement,"testing reports");
+        let buttom= screen.getByText("Update")
+        userEvent.click(buttom);
+        assert.equal(outputObject.reports,"testing reports");
+    });
 });
