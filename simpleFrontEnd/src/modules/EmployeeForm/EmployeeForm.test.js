@@ -3,6 +3,7 @@ import EmployeeForm from "./EmployeeForm";
 import * as axios from "axios";
 import userEvent from '@testing-library/user-event';
 import * as assert from "assert";
+import {Fragment} from "react";
 jest.mock('axios');
 
 
@@ -10,7 +11,7 @@ describe('Employee page', () => {
 
     it('should display all the inputs in the employee form', async () => {
         const renderPage = async () => render(<EmployeeForm/>);
-        renderPage();
+        await renderPage();
 
         function expectToBeInDocument(role) {
             const expected = screen.getByRole(role, {selector:"input"});
@@ -38,14 +39,47 @@ describe('Employee page', () => {
 
         inputs.forEach(role => expectToBeInDocument(role));
     });
+
     it('should send testing reports value at reports', async () => {
-        var outputObject
+        let outputObject;
         const renderPage = async () => render(<EmployeeForm handleForm={(form)=>{outputObject=form}}/>);
-        renderPage();
+        await renderPage();
+
         let inputElement= screen.getByRole("reports", {selector:"input"})
-        userEvent.type(inputElement,"testing reports");
         let buttom= screen.getByText("Update")
+
+        userEvent.type(inputElement,"testing reports");
         userEvent.click(buttom);
+
         assert.equal(outputObject.reports,"testing reports")
     });
+
+    it('should render employee information when employee passed to form', async () => {
+
+        const employee = {
+            "reports": "Ned Stark",
+            "last-name": "Snow",
+            "first-name": "Jon",
+            "title": "Mr",
+            "courtesy-title": "Something of winterfell",
+            "birthdate": "01-01-01",
+            "hire-date": "01-01-10",
+            "address": "winterfell",
+            "city": "winterfell",
+            "region": "North",
+            "postal-code": "123",
+            "country": "GOF",
+            "home-phone": "n/a",
+            "extension": "n/a",
+            "photo": "direwolf.pic",
+            "notes": "knows nothing",
+        }
+        const renderPage = async () => render(<EmployeeForm employee={employee}/>);
+        await renderPage();
+
+        Object.keys(employee).forEach(role => {
+            const expected = screen.getByRole(role, {selector:"input"});
+            expect(expected).toHaveValue(employee[role]);
+        })
+    })
 });

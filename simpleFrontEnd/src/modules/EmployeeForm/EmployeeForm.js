@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 const EmployeeForm= ({handleForm}) => {
-    const [form, setForm] = useState({
+    const initialState = {
         reports: "",
         lastName: "",
         firstName: "",
@@ -18,9 +18,8 @@ const EmployeeForm= ({handleForm}) => {
         extension:"",
         photo:"",
         notes:""
-    });
-
-
+    }
+    const [form, setForm] = useState(initialState);
 
     return (
             <form data-testid="new-employee-form" role={"employee-form"} onSubmit={(event)=> {

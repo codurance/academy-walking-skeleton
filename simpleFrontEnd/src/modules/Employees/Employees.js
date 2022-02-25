@@ -5,7 +5,7 @@ const API_URL = process.env.REACT_APP_API_URL ?? "http://localhost:8080"
 
 const Employees = () => {
     const [formView, setFormView] = useState(false);
-    const [employeeList, setEmployeeList] = useState([]);
+    const [employeeList, setEmployeeList] = useState([{}]);
 
     function showForm(event){
         event.preventDefault();
@@ -17,8 +17,7 @@ const Employees = () => {
             const res = await axios.get(`${API_URL}/getEmployees`);
             setEmployeeList(res.data);
         } catch (ex){
-
-            setEmployeeList([{firstName: "Example 1"}, {firstName: "Example 2"}, {firstName: "Example 3"}]);
+            setEmployeeList([]);
         }
     }, []);
 
@@ -28,17 +27,24 @@ const Employees = () => {
              {
                  employeeList.map((employee) => {
                      return <li key={employee.firstName}>
-                         <EmployeeForm handleForm={(form)=>{ console.log(form) }}/>
+                         <EmployeeForm handleForm={updateEmployee}/>
                      </li>
                  })
              }
          </ul>
         <button onClick={showForm}>New</button>
             {formView &&
-                <EmployeeForm handleForm={(form)=>{ console.log(form) }}/>
+                <EmployeeForm handleForm={addEmployee}/>
             }
     </>
 )
+    function addEmployee(data){
+        setEmployeeList([...employeeList, data])
+    }
+
+    function updateEmployee(data){
+        setEmployeeList([...employeeList, data])
+    }
 };
 
 export default Employees;
