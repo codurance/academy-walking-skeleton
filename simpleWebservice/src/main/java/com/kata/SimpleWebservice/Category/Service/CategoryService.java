@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryService {
     public void create(Category category) {
-
+        throw new UnsupportedOperationException();
     }
 }
