@@ -1,5 +1,6 @@
 import React, {useState, useEffect } from "react";
 import * as axios from "axios";
+import EmployeeForm from "../EmployeeForm/EmployeeForm";
 const API_URL = process.env.REACT_APP_API_URL ?? "http://localhost:8080"
 
 const Employees = () => {
@@ -27,10 +28,7 @@ const Employees = () => {
              {
                  employeeList.map((employee) => {
                      return <li key={employee.firstName}>
-                         <form role={"employee-form"}>
-                             <input type="text" defaultValue={employee.firstName} />
-                             <button>Update</button>
-                         </form>
+                         <EmployeeForm handleForm={(form)=>{ console.log(form) }}/>
                      </li>
                  })
              }
