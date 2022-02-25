@@ -45,10 +45,10 @@ describe('Employee page', () => {
         await renderPage();
 
         let inputElement= screen.getByRole("reports", {selector:"input"})
-        let buttom= screen.getByText("Update")
+        let button= screen.getByText("Update")
 
         userEvent.type(inputElement,"testing reports");
-        userEvent.click(buttom);
+        userEvent.click(button);
 
         assert.equal(outputObject.reports,"testing reports")
     });
