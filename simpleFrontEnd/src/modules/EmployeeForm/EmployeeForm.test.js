@@ -3,7 +3,6 @@ import EmployeeForm from "./EmployeeForm";
 import * as axios from "axios";
 import userEvent from '@testing-library/user-event';
 import * as assert from "assert";
-import {Fragment} from "react";
 jest.mock('axios');
 
 
@@ -20,18 +19,18 @@ describe('Employee page', () => {
 
         var inputs = [
             "reports",
-            "last-name",
-            "first-name",
+            "lastName",
+            "firstName",
             "title",
-            "courtesy-title",
+            "courtesyTitle",
             "birthdate",
-            "hire-date",
+            "hireDate",
             "address",
             "city",
             "region",
-            "postal-code",
+            "postalCode",
             "country",
-            "home-phone",
+            "homePhone",
             "extension",
             "photo",
             "notes",

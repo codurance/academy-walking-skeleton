@@ -15,13 +15,13 @@ const mockFetchUsers = results => {
 }
 
 describe('Employee page', () => {
-    const mockUsers = [{ firstName: "John Doe" },{ firstName: "Chris" },];
+    const mockUsers = [{ firstName: "John Doe" }];
 
     beforeEach(async () => {
 
         mockFetchUsers(mockUsers);
         await act(async () => {
-            renderPage();
+            await renderPage();
         });
     })
 
@@ -45,7 +45,6 @@ describe('Employee page', () => {
     } )
 
     it ( 'form should not appear if the button is not pressed', async()=>{
-
         expect(screen.queryByTestId("new-employee-form")).toBeNull();
     } )
 

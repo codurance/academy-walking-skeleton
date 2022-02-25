@@ -14,15 +14,16 @@ const EmployeeForm= ({handleForm, employee}) => {
         region: "",
         postalCode: "",
         country: "",
-        home: "",
+        homePhone: "",
         extension:"",
         photo:"",
         notes:""
     }
-    const [form, setForm] = useState(employee ? employee : initialState);
+    const [form, setForm] = useState(employee ? employee : {...initialState, employee});
 
     return (
-            <form data-testid="new-employee-form" role={"employee-form"} onSubmit={(event)=> {
+            <form data-testid={employee ? `employee-form-${employee.firstName}` : "new-employee-form"}
+                  role={"employee-form"} onSubmit={(event)=> {
                 event.preventDefault()
                 handleForm(form)
             }}>

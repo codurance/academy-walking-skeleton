@@ -27,7 +27,7 @@ const Employees = () => {
              {
                  employeeList.map((employee) => {
                      return <li key={employee.firstName}>
-                         <EmployeeForm handleForm={updateEmployee}/>
+                         <EmployeeForm employee={employee} handleForm={updateEmployee}/>
                      </li>
                  })
              }
