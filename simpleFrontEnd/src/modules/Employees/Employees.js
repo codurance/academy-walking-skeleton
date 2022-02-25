@@ -23,7 +23,7 @@ const Employees = () => {
 
     return (<>
         <h1>Employee</h1>
-         <ul data-testid="employee-list">
+            <ul data-testid="employee-list">
              {
                  employeeList.map((employee) => {
                      return <li key={employee.firstName}>
@@ -31,12 +31,12 @@ const Employees = () => {
                      </li>
                  })
              }
-         </ul>
-        <button onClick={showForm}>New</button>
-            {formView &&
+            </ul>
+            <button onClick={showForm}>New</button>
+            {   formView &&
                 <EmployeeForm handleForm={addEmployee}/>
             }
-    </>
+        </>
 )
     function addEmployee(data){
         setEmployeeList([...employeeList, data])
