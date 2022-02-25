@@ -38,8 +38,6 @@ describe('Main', () => {
             userEvent.click(screen.getByText('button', { selector: 'button' }));
         });
 
-
-
         expectedTextFromAPI.forEach(content => {
             expect(screen.getByText(content)).toBeInTheDocument();
         });
