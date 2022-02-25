@@ -30,7 +30,7 @@ public class CategoryAcceptanceTest {
 
 
         //WhenAndThen
-        this.mockMvc.perform(post("/categories")
+        this.mockMvc.perform(post("/createCategory")
                 .content("{\"name\":\"test category\",\"description\": \"category description\" ,\"picture\":\"picture url\"}"))
                 .andExpect(status().isCreated());
 

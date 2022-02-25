@@ -12,7 +12,7 @@ public class CategoryCommandController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/categories")
+    @PostMapping("/createCategory")
     @ResponseBody
     @ResponseStatus (HttpStatus.CREATED)
     public void createCategoryInDatabase(@RequestBody Category category) {

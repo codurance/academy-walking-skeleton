@@ -30,7 +30,7 @@ class CategoryCommandControllerShould {
     @Test
     void call_category_service_for_creation() throws Exception {
         Category category = new Category("aNames", "aDescription", "aPicture");
-        mockMvc.perform(post("/categories")
+        mockMvc.perform(post("/createCategory")
                         .content(objectMapper.writeValueAsString(category))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
