@@ -5,7 +5,7 @@ const API_URL = process.env.REACT_APP_API_URL ?? "http://localhost:8080"
 
 const Employees = () => {
     const [formView, setFormView] = useState(false);
-    const [employeeList, setEmployeeList] = useState([{}]);
+    const [employeeList, setEmployeeList] = useState([]);
 
     function showForm(event){
         event.preventDefault();
