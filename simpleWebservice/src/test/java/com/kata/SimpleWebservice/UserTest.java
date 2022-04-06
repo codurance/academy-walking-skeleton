@@ -15,7 +15,7 @@ public class UserTest {
     ObjectMapper objectMapper;
 
     @Test
-    void userObjectDeserialisesCorrectly() throws JsonProcessingException {
+    void userObjectDeserializesCorrectly() throws JsonProcessingException {
         User user = new User("John Doe", 26, "1970-12-31");
         String actualJson = objectMapper.writeValueAsString(user);
         String expectedJson = "{\"name\":\"John Doe\",\"age\":26,\"dateOfBirth\":\"1970-12-31\"}";
