@@ -11,11 +11,11 @@ import java.util.List;
 public class UserWebservice {
 
     @Autowired
-    private UserRepositoryJDBC userRepository;
+    private UserRepository userRepository;
 
     @RequestMapping("/getUsers")
     @ResponseBody
-    public List<UserJDBC> getUsersFromDatabase() {
+    public List<User> getUsersFromDatabase() {
         return userRepository.findAll();
     }
 

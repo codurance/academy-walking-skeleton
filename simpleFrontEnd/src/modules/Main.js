@@ -25,13 +25,16 @@ function Main() {
                 </p>
 
                 {users.length > 0 &&
-                    <>
-                        <ul>
-                            <li>Name: {users[0].name}</li>
-                            <li>Age: {users[0].age}</li>
-                            <li>Date of birth: {users[0].dateOfBirth}</li>
-                        </ul>
-                    </>
+                    users.map(function (user) {
+                        return <>
+                                <ul>
+                                    <li>Name: {user.name}</li>
+                                    <li>Age: {user.age}</li>
+                                    <li>Date of birth: {user.dateOfBirth}</li>
+                                </ul>
+                            </>;
+                    })
+
                 }
             </header>
         </div>

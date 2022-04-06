@@ -1,6 +1,9 @@
 .PHONY: all
 all: backend frontend
 
+.PHONY: dockerLocal
+dockerLocal: build_backend_docker build_frontend_docker up
+
 .PHONY: backend
 backend: build_backend_docker push_backend
 

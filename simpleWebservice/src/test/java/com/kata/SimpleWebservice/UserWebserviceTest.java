@@ -1,5 +1,6 @@
 package com.kata.SimpleWebservice;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,7 @@ public class UserWebserviceTest {
 
     @Test
     public void defaultWebserviceEndpointShouldReturnGenericMessage() throws Exception {
-        User user = new User("John Doe", 26, "1970-12-31");
+        User user = new User(0,"John Doe", 26, LocalDate.of(1970,12,31));
 
         given(userRepository.findAll()).willReturn(List.of(user));
 
