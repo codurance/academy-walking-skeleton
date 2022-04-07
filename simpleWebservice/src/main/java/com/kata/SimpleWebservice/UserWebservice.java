@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 public class UserWebservice {
-
     @Autowired
     private UserRepository userRepository;
 
@@ -18,6 +17,4 @@ public class UserWebservice {
     public List<User> getUsersFromDatabase() {
         return userRepository.findAll();
     }
-
-
 }
