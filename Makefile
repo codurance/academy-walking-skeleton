@@ -10,6 +10,7 @@ backend: build_backend_docker push_backend
 .PHONY: frontend
 frontend: build_frontend_docker push_frontend
 
+
 COMMIT		:= $(shell git rev-parse HEAD)
 LATEST		:= latest
 
@@ -80,5 +81,20 @@ ps:
 	@docker-compose ps
 
 .PHONY: db
-db:
+db: dbup wait baseline migrate
+
+.PHONY: dbup
+dbup:
 	@docker-compose up -d db
+
+.PHONY: wait
+wait:
+	@sleep 3
+
+.PHONY: baseline
+baseline:
+	@cd simpleWebService && ./gradlew flywayBaseline
+
+.PHONY: migrate
+migrate:
+	@cd simpleWebService && ./gradlew flywayMigrate
