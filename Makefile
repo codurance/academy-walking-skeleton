@@ -10,7 +10,6 @@ backend: build_backend_docker push_backend
 .PHONY: frontend
 frontend: build_frontend_docker push_frontend
 
-
 COMMIT		:= $(shell git rev-parse HEAD)
 LATEST		:= latest
 
