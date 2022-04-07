@@ -9,7 +9,7 @@ function Main() {
 
     const getUsers = async () => {
         const res = await axios.get(`${API_URL}/getUsers`);
-        setUsers(res.data)
+        setUsers(res.data);
     }
 
     return (
@@ -23,22 +23,20 @@ function Main() {
                     Click this button to get user data:
                     <button onClick={getUsers}>button</button>
                 </p>
-
-                {users.length > 0 &&
-                    users.map(function (user) {
-                        return <>
-                                <ul>
-                                    <li>Name: {user.name}</li>
-                                    <li>Age: {user.age}</li>
-                                    <li>Date of birth: {user.dateOfBirth}</li>
-                                </ul>
-                            </>;
-                    })
-
-                }
+                {users.map(u => <User user={u}/>)}
             </header>
         </div>
     )
+}
+
+function User(props) {
+    return <>
+        <ul>
+            <li>Name: {props.user.name}</li>
+            <li>Age: {props.user.age}</li>
+            <li>Date of birth: {props.user.dateOfBirth}</li>
+        </ul>
+    </>;
 }
 
 export { Main }
