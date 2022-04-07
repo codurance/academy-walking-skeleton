@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL ?? "http://localhost:8080"
@@ -30,13 +30,11 @@ function Main() {
 }
 
 function User(props) {
-    return <>
-        <ul>
-            <li>Name: {props.user.name}</li>
-            <li>Age: {props.user.age}</li>
-            <li>Date of birth: {props.user.dateOfBirth}</li>
-        </ul>
-    </>;
+    return <ul>
+        <li>Name: {props.user.name}</li>
+        <li>Age: {props.user.age}</li>
+        <li>Date of birth: {props.user.dateOfBirth}</li>
+    </ul>;
 }
 
-export { Main }
+export {Main}
