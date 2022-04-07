@@ -1,5 +1,7 @@
 package com.kata.SimpleWebservice;
 
+import java.time.LocalDate;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static java.util.Arrays.asList;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -24,9 +25,9 @@ public class UserWebserviceTest {
 
     @Test
     public void defaultWebserviceEndpointShouldReturnGenericMessage() throws Exception {
-        User user = new User("John Doe", 26, "1970-12-31");
+        User user = new User(0,"John Doe", 26, LocalDate.of(1970,12,31));
 
-        given(userRepository.findAll()).willReturn(asList(user));
+        given(userRepository.findAll()).willReturn(List.of(user));
 
         this.mockMvc.perform(get("/getUsers"))
                 .andExpect(status().isOk())

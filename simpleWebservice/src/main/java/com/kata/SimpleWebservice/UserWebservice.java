@@ -9,15 +9,12 @@ import java.util.List;
 
 @RestController
 public class UserWebservice {
-
     @Autowired
     private UserRepository userRepository;
 
     @RequestMapping("/getUsers")
     @ResponseBody
     public List<User> getUsersFromDatabase() {
-        return (List<User>) userRepository.findAll();
+        return userRepository.findAll();
     }
-
-
 }

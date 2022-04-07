@@ -11,11 +11,14 @@ Disclaimer: This is not intended to be a production hardened system but a framwo
 * A http client eg. Postman (optional)
 
 ## What is a walking skeleton?
-It's a colllection of lean services that solve some problem from end to end. It represents a minimal implementation that will produce some valuable outcome. 
+It's a collection of lean services that solve some problem from end to end. It represents a minimal implementation that will produce some valuable outcome. 
 
 ## How to run this application
 
-* In the project root, run the command `make db` to get the postgres image and start the container that will hold it (the database will run on port `5432`)
+* In the project root, run the command `make db` to get the postgres image and start the container that will hold it (the database will run on port `5432`).
+  * It will also run the flyway migrations, leaving the database in a usable state. 
+  * Right now it was a three seconds wait to make sure postgres has started, we could add a retry mechanism to avoid it.
+  * You can skip the migrations by running `make dbup`.
 * `cd` into the `simpleWebservice` directory
 * run the command `./gradlew bootRun` (the service should run on port `8080` by default)
 * We can verify this was successful by going to `http://localhost:8080/getUsers` using a http client or more simply via a browser

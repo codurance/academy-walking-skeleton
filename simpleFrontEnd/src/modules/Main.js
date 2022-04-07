@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL ?? "http://localhost:8080"
@@ -9,7 +9,7 @@ function Main() {
 
     const getUsers = async () => {
         const res = await axios.get(`${API_URL}/getUsers`);
-        setUsers(res.data)
+        setUsers(res.data);
     }
 
     return (
@@ -23,19 +23,18 @@ function Main() {
                     Click this button to get user data:
                     <button onClick={getUsers}>button</button>
                 </p>
-
-                {users.length > 0 &&
-                    <>
-                        <ul>
-                            <li>Name: {users[0].name}</li>
-                            <li>Age: {users[0].age}</li>
-                            <li>Date of birth: {users[0].dateOfBirth}</li>
-                        </ul>
-                    </>
-                }
+                {users.map(u => <User user={u}/>)}
             </header>
         </div>
     )
 }
 
-export { Main }
+function User(props) {
+    return <ul>
+        <li>Name: {props.user.name}</li>
+        <li>Age: {props.user.age}</li>
+        <li>Date of birth: {props.user.dateOfBirth}</li>
+    </ul>;
+}
+
+export {Main}

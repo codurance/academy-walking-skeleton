@@ -1,6 +1,9 @@
 .PHONY: all
 all: backend frontend
 
+.PHONY: dockerLocal
+dockerLocal: db build_backend_docker build_frontend_docker up
+
 .PHONY: backend
 backend: build_backend_docker push_backend
 
@@ -77,5 +80,14 @@ ps:
 	@docker-compose ps
 
 .PHONY: db
-db:
+db: dbup migrate
+
+.PHONY: dbup
+dbup:
 	@docker-compose up -d db
+
+
+.PHONY: migrate
+migrate:
+	@sleep 3
+	@cd simpleWebService && ./gradlew flywayMigrate
