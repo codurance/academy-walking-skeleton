@@ -2,7 +2,7 @@
 all: backend frontend
 
 .PHONY: dockerLocal
-dockerLocal: build_backend_docker build_frontend_docker up
+dockerLocal: db build_backend_docker build_frontend_docker up
 
 .PHONY: backend
 backend: build_backend_docker push_backend
@@ -81,20 +81,14 @@ ps:
 	@docker-compose ps
 
 .PHONY: db
-db: dbup wait baseline migrate
+db: dbup migrate
 
 .PHONY: dbup
 dbup:
 	@docker-compose up -d db
 
-.PHONY: wait
-wait:
-	@sleep 3
-
-.PHONY: baseline
-baseline:
-	@cd simpleWebService && ./gradlew flywayBaseline
 
 .PHONY: migrate
 migrate:
+	@sleep 3
 	@cd simpleWebService && ./gradlew flywayMigrate
